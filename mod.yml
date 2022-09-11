@@ -1,0 +1,12 @@
+title: Faster Grim Reaper 2
+originalAuthor: SapphireSapphic
+game: kh2
+description: Removes Grim Reaper 2's HP gates. Fully compatible with Boss Rando.
+
+assets:
+
+#Load the Lua Script
+- name: scripts/F266B00B fasterGR2.lua
+  method: copy
+  source:
+  - name: fasterGR2.lua

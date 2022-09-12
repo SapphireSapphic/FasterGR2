@@ -48,8 +48,6 @@ function _OnFrame()
 			
 			ConsolePrint("Rewriting GR2 HP Gates at Slot "..s)
 			WriteInt(Slots[s]+8,0)
-			WriteInt(Slots[s+1]+8,0)
-			WriteInt(Slots[s+2]+8,0)
 		end
 	end
 end

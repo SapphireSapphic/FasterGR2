@@ -41,8 +41,9 @@ function _OnFrame()
 	WriteShort(grimReaper2+0x50, 0x0045)
 	WriteShort(grimReaper2+0x52, 0x0045)
 	WriteShort(grimReaper2+0x54, 0x0045)
-	ConsolePrint(ReadByte(Slots[s]+0x1A8).." | "..ReadByte(Slots[s]+0x1A9).." | "..ReadByte(Slots[s]+0x1AA).." | "..ReadByte(Slots[s]+0x1AB).." | "..ReadByte(Slots[s]+0x1AC).." | "..ReadByte(Slots[s]+0x1AD).." | "..ReadByte(Slots[s]+0x1AE))
+	
 	for s = 1, 12 do
+		ConsolePrint(ReadByte(Slots[s]+0x1A8).." | "..ReadByte(Slots[s]+0x1A9).." | "..ReadByte(Slots[s]+0x1AA).." | "..ReadByte(Slots[s]+0x1AB).." | "..ReadByte(Slots[s]+0x1AC).." | "..ReadByte(Slots[s]+0x1AD).." | "..ReadByte(Slots[s]+0x1AE))
 		if ReadByte(Slots[s]+0x1A8) == 0x45 and ReadByte(Slots[s]+0x1A9) == 0x45 and ReadByte(Slots[s]+0x1AA) == 0x45 and ReadByte(Slots[s]+0x1AB) == 0x45 and ReadByte(Slots[s]+0x1AC) == 0x45 and ReadByte(Slots[s]+0x1AD) == 0x45 then
 			
 			ConsolePrint("Rewriting GR2 HP Gates at Slot "..s)

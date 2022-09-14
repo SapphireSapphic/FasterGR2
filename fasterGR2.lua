@@ -49,18 +49,7 @@ function _OnFrame()
 		--ConsolePrint(ReadByte(Slots[s]+0x1A8).." | "..ReadByte(Slots[s]+0x1A9).." | "..ReadByte(Slots[s]+0x1AA).." | "..ReadByte(Slots[s]+0x1AB).." | "..ReadByte(Slots[s]+0x1AC).." | "..ReadByte(Slots[s]+0x1AD).." | "..ReadByte(Slots[s]+0x1AE))
 		if ReadByte(Slots[s]+0x1A8) == 0x45 and ReadByte(Slots[s]+0x1A9) == 0x45 and ReadByte(Slots[s]+0x1AA) == 0x45 and ReadByte(Slots[s]+0x1AB) == 0x45 and ReadByte(Slots[s]+0x1AC) == 0x45 and ReadByte(Slots[s]+0x1AD) == 0x45 then
 			--ConsolePrint("Rewriting GR2 HP Gates at Slot "..s)
-			WriteInt(Slot1+8,0)
-			WriteInt(Slot2+8,0)
-			WriteInt(Slot3+8,0)
-			WriteInt(Slot4+8,0)
-			WriteInt(Slot5+8,0)
-			WriteInt(Slot6+8,0)
-			WriteInt(Slot7+8,0)
-			WriteInt(Slot8+8,0)
-			WriteInt(Slot9+8,0)
-			WriteInt(Slot10+8,0)
-			WriteInt(Slot11+8,0)
-			WriteInt(Slot12+8,0)
+			WriteShort(Slots[s]+8,0x0000)
 		end
 	end
 end

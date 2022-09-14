@@ -11,12 +11,15 @@ function _OnInit()
 		Slot1    = 0x1C6C750 --Unit Slot 1
 		NextSlot = 0x268
 	elseif GAME_ID == 0x431219CC and ENGINE_TYPE == "BACKEND" then
-		canExecute=true
+		onPC=true
 		ConsolePrint("Faster GR2 Lua")
-		Save = 0x09A7070 - 0x56450E
-		Btl0 = 0x2A74840 - 0x56450E
-		Slot1    = 0x2A20C58 - 0x56450E
+		Offset = 0x56450E
+		Oofseet = 0x56454E
+		Save = 0x09A7070 - Offset
+		Btl0 = 0x2A74840 - Offset
+		Slot1    = 0x2A20C58 - Offset
 		NextSlot = 0x278
+		local ReadInput = 0x1ACF3C
 	end
 	grimReaper2 = Btl0+0x2E52C
 	Slot2  = Slot1 - NextSlot
@@ -46,18 +49,7 @@ function _OnFrame()
 		--ConsolePrint(ReadByte(Slots[s]+0x1A8).." | "..ReadByte(Slots[s]+0x1A9).." | "..ReadByte(Slots[s]+0x1AA).." | "..ReadByte(Slots[s]+0x1AB).." | "..ReadByte(Slots[s]+0x1AC).." | "..ReadByte(Slots[s]+0x1AD).." | "..ReadByte(Slots[s]+0x1AE))
 		if ReadByte(Slots[s]+0x1A8) == 0x45 and ReadByte(Slots[s]+0x1A9) == 0x45 and ReadByte(Slots[s]+0x1AA) == 0x45 and ReadByte(Slots[s]+0x1AB) == 0x45 and ReadByte(Slots[s]+0x1AC) == 0x45 and ReadByte(Slots[s]+0x1AD) == 0x45 then
 			--ConsolePrint("Rewriting GR2 HP Gates at Slot "..s)
-			WriteInt(Slot1+8,0)
-			WriteInt(Slot2+8,0)
-			WriteInt(Slot3+8,0)
-			WriteInt(Slot4+8,0)
-			WriteInt(Slot5+8,0)
-			WriteInt(Slot6+8,0)
-			WriteInt(Slot7+8,0)
-			WriteInt(Slot8+8,0)
-			WriteInt(Slot9+8,0)
-			WriteInt(Slot10+8,0)
-			WriteInt(Slot11+8,0)
-			WriteInt(Slot12+8,0)
+			WriteInt(Slots[s]+8,0)
 		end
 	end
 end

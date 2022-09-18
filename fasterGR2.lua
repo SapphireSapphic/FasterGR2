@@ -50,6 +50,7 @@ function _OnFrame()
 		if ReadByte(Slots[s]+0x1A8) == 0x45 and ReadByte(Slots[s]+0x1A9) == 0x45 and ReadByte(Slots[s]+0x1AA) == 0x45 and ReadByte(Slots[s]+0x1AB) == 0x45 and ReadByte(Slots[s]+0x1AC) == 0x45 and ReadByte(Slots[s]+0x1AD) == 0x45 then
 			ConsolePrint("Rewriting GR2 HP Gates at Slot "..s)
 			WriteShort(Slots[s]+8,0x0000)
+			WriteByte(Slots[s]+0x01AE,0x45)
 			if s >=2 then
 				WriteShort(Slots[s-1]+8,0x0000)
 			end
@@ -58,9 +59,11 @@ function _OnFrame()
 			end
 			if s<=11 then
 				WriteShort(Slots[s+1]+8,0x0000)
+				WriteByte(Slots[s+1]+0x01AE,0x45)
 			end
 			if s<=10 then
 				WriteShort(Slots[s+2]+8,0x0000)
+				WriteByte(Slots[s+2]+0x01AE,0x45)
 			end
 		end
 	end

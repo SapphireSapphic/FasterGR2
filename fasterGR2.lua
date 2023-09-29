@@ -7,7 +7,8 @@ function _OnInit()
 		canExecute=true
 		ConsolePrint("Faster GR2 PCSX2 Ver")
 		Save = 0x032BB30 --Save File
-		Btl0 = 0x1CE5D80 --00battle.bin
+		Btl0Pointer = 0x1C61AFC --00battle.bin Pointer Address
+		Now = 0x032BAE0 --Current Location
 		Slot1    = 0x1C6C750 --Unit Slot 1
 		NextSlot = 0x268
 	elseif GAME_ID == 0x431219CC and ENGINE_TYPE == "BACKEND" then
@@ -16,12 +17,12 @@ function _OnInit()
 		Offset = 0x56450E
 		Oofseet = 0x56454E
 		Save = 0x09A7070 - Offset
-		Btl0 = 0x2A74840 - Offset
+		Btl0Pointer = 0x2AE3558 - 0x56454E
+		Now = 0x0714DB8 - offset
 		Slot1    = 0x2A20C58 - Offset
 		NextSlot = 0x278
 		local ReadInput = 0x1ACF3C
 	end
-	grimReaper2 = Btl0+0x2E52C
 	Slot2  = Slot1 - NextSlot
 	Slot3  = Slot2 - NextSlot
 	Slot4  = Slot3 - NextSlot
@@ -37,6 +38,21 @@ function _OnInit()
 end
 
 function _OnFrame()
+	Place  = ReadShort(Now+0x00)
+	if Place == 0xFFFF or not MSN then
+		if not OnPC then
+			Obj0 = ReadInt(Obj0Pointer)
+			Sys3 = ReadInt(Sys3Pointer)
+			Btl0 = ReadInt(Btl0Pointer)
+			MSN = 0x04FA440
+		else
+			Obj0 = ReadLong(Obj0Pointer)
+			Sys3 = ReadLong(Sys3Pointer)
+			Btl0 = ReadLong(Btl0Pointer)
+			MSN = 0x0BF08C0 - 0x56450E
+		end
+	end
+	grimReaper2 = Btl0+0x2E52C
 	WriteShort(grimReaper2+0x48, 0x0045)
 	WriteShort(grimReaper2+0x4A, 0x0045)
 	WriteShort(grimReaper2+0x4C, 0x0045)
